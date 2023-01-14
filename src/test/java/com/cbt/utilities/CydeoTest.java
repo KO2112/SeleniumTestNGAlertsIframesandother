@@ -36,6 +36,7 @@ public class CydeoTest {
         }catch (StaleElementReferenceException e){
             System.out.println("its not dispalyed");
         }
+
     }
     @Test
     public void test2(){
@@ -57,14 +58,19 @@ public class CydeoTest {
         }
     }
     @Test
-    public void test3(){
+    public void test3() throws InterruptedException {
         driver.get("https://practice.cydeo.com/dropdown");
-        WebElement element = driver.findElement(By.id("dropdown"));
-        Select select = new Select(element);
-        List<WebElement> alloptions = select.getOptions();
-        for (WebElement element1: alloptions) {
-            System.out.println(element1.getText());
+        Select multipleDropdown = new Select(driver.findElement(By.xpath("//select[@name='Languages']")));
+        List<WebElement> options = multipleDropdown.getOptions();
+        for (int i = 0; i < options.size(); i++) {
+            multipleDropdown.selectByIndex(i);
         }
+        List<WebElement> selectedOptions = multipleDropdown.getAllSelectedOptions();
+        for (WebElement each : selectedOptions) {
+            System.out.println(each.getText());
+        }
+        Thread.sleep(4000);
+        multipleDropdown.deselectAll();
     }
     @AfterMethod
     public void quit(){
