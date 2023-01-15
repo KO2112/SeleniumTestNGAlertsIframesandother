@@ -1,5 +1,6 @@
-package com.cbt.utilities;
+package com.cbt.day15;
 
+import com.cbt.utilities.BrowserUtil;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,12 +15,6 @@ import java.util.List;
 
 public class TC1 {
     WebDriver driver;
-    @BeforeMethod
-    public void setDriver(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-    }
     @Test
     public void test1(){
         BrowserUtil.logintosmartbear(driver);

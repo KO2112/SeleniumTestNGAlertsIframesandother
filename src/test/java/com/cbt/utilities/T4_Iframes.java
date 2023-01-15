@@ -1,5 +1,6 @@
 package com.cbt.utilities;
 
+import com.cbt.base.TestBase;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -13,27 +14,15 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class T4_Iframes {
-    WebDriver driver;
-    @BeforeMethod
-    public void setDriver(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://practice.cydeo.com/iframe");
-    }
+public class T4_Iframes extends TestBase {
     @Test
     public void test1(){
+        driver.get("https://practice.cydeo.com/iframe");
         driver.switchTo().frame("mce_0_ifr");
         WebElement text =  driver.findElement(By.id("tinymce"));
         driver.switchTo().parentFrame();
         WebElement element = driver.findElement(By.xpath("//*[@id=\"content\"]/div/h3"));
         Assert.assertTrue(element.isDisplayed());
-    }
-
-    @AfterMethod
-    public void quit(){
-        driver.quit();
     }
 }
 
