@@ -29,5 +29,21 @@ public class tc1registformtest {
         WebElement inputemail = Driver.getDriver().findElement(By.xpath("//input[@name='email']"));
         inputemail.sendKeys(user+"@gmail.com");
 
+        WebElement inputpassword = Driver.getDriver().findElement(By.xpath("//input[@name='password']"));
+        inputpassword.sendKeys(faker.internet().password());
+
+        WebElement phonenumberinput = Driver.getDriver().findElement(By.xpath("//input[@name='phone']"));
+        phonenumberinput.sendKeys(faker.numerify("###-###-####"));
+
+        WebElement genderinput = Driver.getDriver().findElement(By.xpath("//input[@value='female']"));
+        genderinput.click();
+
+        WebElement inputbirthday = Driver.getDriver().findElement(By.xpath("//input[@name='birthday']"));
+        inputbirthday.sendKeys("03/12/2000");
+
+        Select departmentdropdown = new Select(Driver.getDriver().findElement(By.xpath("//select[@name='department']")));
+
+        departmentdropdown.selectByIndex(faker.number().numberBetween(1,9));
+
     }
 }
